@@ -26,3 +26,4 @@
 ###< symfony/asset-mapper ###
 *.env
 *.env.dev
+/node_modules
