@@ -1,17 +1,12 @@
-name: Deploy Ubuntu
-
+name: Deploiment Ubuntu
+# se déclanche sur :
 on:
     push:
-        branches:
-            - main
-
+        branches: [main]
+    pull_request:
+        branches: [main]
+# liste des jobs à exécuter
 jobs:
-    build:
+    nom-job:
+        # démarre une image ubuntun
         runs-on: ubuntu-latest
-
-        steps:
-            - name: Installer des dépendances test
-              run: sudo apt update && apt install -y curl mysql-client
-
-            - name: Exécuter un script bash
-              run: echo "Hello depuis un conteneur Ubuntu!"
