@@ -11,7 +11,7 @@ jobs:
 
         steps:
             - name: Installer des dépendances test
-              run: apt update && apt install -y curl mysql-client
+              run: sudo apt update && apt install -y curl mysql-client
 
             - name: Exécuter un script bash
               run: echo "Hello depuis un conteneur Ubuntu!"
