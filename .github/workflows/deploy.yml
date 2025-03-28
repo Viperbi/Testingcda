@@ -10,5 +10,5 @@ jobs:
     deploy:
         # démarre une image ubuntun
         runs-on: ubuntu-latest
-
+    steps:
         run: echo "Ubuntu deployé"
