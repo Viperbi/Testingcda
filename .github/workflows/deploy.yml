@@ -7,6 +7,8 @@ on:
         branches: [main]
 # liste des jobs à exécuter
 jobs:
-    nom-job:
+    deploy:
         # démarre une image ubuntun
         runs-on: ubuntu-latest
+
+        run: echo "Ubuntu deployé"
