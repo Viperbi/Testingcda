@@ -11,4 +11,5 @@ jobs:
         # démarre une image ubuntun
         runs-on: ubuntu-latest
         steps:
-            run: echo "Ubuntu deployé"
+            - name: Checkout code
+              run: echo "Ubuntu deployé"
