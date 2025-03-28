@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Installer des dépendances
+            - name: Installer des dépendances test
               run: apt update && apt install -y curl mysql-client
 
             - name: Exécuter un script bash
