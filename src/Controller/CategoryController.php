@@ -31,6 +31,7 @@ final class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($category->getLabel() === '') {
+
                 $this->addFlash('error', 'The category label cannot be empty.');
             } else {
                 $entityManager->persist($category);
@@ -57,10 +58,19 @@ final class CategoryController extends AbstractController
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
+        $oldLabel = $category->getLabel();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($category->getLabel() == $oldLabel) {
+                $this->addFlash('errorEdit', 'The category label cannot be the same as the old one.');
+            } else {
+                $entityManager->persist($category);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
