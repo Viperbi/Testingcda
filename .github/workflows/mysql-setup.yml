@@ -16,8 +16,8 @@ jobs:
                     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
                     MYSQL_ROOT_PASSWORD: root
                     MYSQL_DATABASE: testdb
-                    MYSQL_USER: root
-                    MYSQL_PASSWORD:
+                    MYSQL_USER: Flo
+                    MYSQL_PASSWORD: AZERTY1234
                 ports:
                     - 3307:3307
                 options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -25,4 +25,4 @@ jobs:
         steps:
             - name: Vérifier la connexion MySQL
               run: |
-                  mysql --host=127.0.0.1:3307 --user=root --password=root --execute="SHOW DATABASES;"
+                  mysql --host=127.0.0.1:3307 --user=Flo --password=AZERTY1234 --execute="SHOW DATABASES;"
