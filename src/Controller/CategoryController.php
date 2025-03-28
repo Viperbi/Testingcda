@@ -31,7 +31,6 @@ final class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($category->getLabel() === '') {
-
                 $this->addFlash('error', 'The category label cannot be empty.');
             } else {
                 $entityManager->persist($category);

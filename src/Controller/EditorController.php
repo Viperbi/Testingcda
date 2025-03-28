@@ -30,10 +30,14 @@ final class EditorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($editor);
-            $entityManager->flush();
+            if ($editor->getName() === "") {
+                $this->addFlash('errorEditor', 'The editor name cannot be empty.');
+            } else {
+                $entityManager->persist($editor);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_editor_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('editor/new.html.twig', [
@@ -71,7 +75,7 @@ final class EditorController extends AbstractController
     #[Route('/{id}', name: 'app_editor_delete', methods: ['POST'])]
     public function delete(Request $request, Editor $editor, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$editor->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $editor->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($editor);
             $entityManager->flush();
         }
