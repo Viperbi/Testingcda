@@ -14,7 +14,7 @@ jobs:
                 image: mysql:8
                 env:
                     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-                    MYSQL_ROOT_PASSWORD:
+                    MYSQL_ROOT_PASSWORD: root
                     MYSQL_DATABASE: testdb
                     MYSQL_USER: root
                     MYSQL_PASSWORD:
@@ -23,9 +23,6 @@ jobs:
                 options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
         steps:
-            - name: Installer MySQL client
-              run: sudo apt update && sudo apt install -y mysql-client
-
             - name: Vérifier la connexion MySQL
               run: |
-                  mysql --host=127.0.0.1:3307 --user=root --password= --execute="SHOW DATABASES;"
+                  mysql --host=127.0.0.1:3307 --user=root --password=root --execute="SHOW DATABASES;"
